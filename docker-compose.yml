@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  pulseway:
+    build: ./build
+    container_name: pulseway
+    hostname: pulseway
+    restart: always
+    env_file: .env
+    volumes:
+      - ./config.xml:/etc/pulseway/config-template.xml:ro

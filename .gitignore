@@ -1,0 +1,3 @@
+/build/pulseway*.deb
+/.env
+/config.xml
