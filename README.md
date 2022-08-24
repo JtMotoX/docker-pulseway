@@ -4,9 +4,9 @@ Run Pulseway as a docker container to get notified when the server goes down
 
 ## Setup
 
-1. Copy the [config.xml.sample](./config.xml.sample) file to [config.xml](./config.xml)
-
 1. Copy the [.env.sample](./.env.sample) file to [.env](./.env) and update the variables
+
+1. Copy the [config.xml.sample](./config.xml.sample) file to [config.xml](./config.xml)
 
 1. Run the `./download-latest.sh` script
 
