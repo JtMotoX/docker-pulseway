@@ -23,11 +23,8 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 # SETUP USER
 ARG USER_NAME=appuser
-ARG USER_ID=1001
-ARG GROUP_NAME=appgroup
-ARG GROUP_ID=2001
-RUN groupadd -g ${GROUP_ID} -r ${GROUP_NAME} && \
-	useradd -u ${USER_ID} -r ${USER_NAME} -g ${GROUP_NAME}
+ARG USER_ID=9001
+RUN useradd -u ${USER_ID} -r ${USER_NAME}
 
 # SETUP SUDO FOR NON-ROOT USER
 RUN apt-get update && \
@@ -53,7 +50,7 @@ RUN touch /etc/pulseway/config.xml && \
 
 COPY --chmod=755 ./entrypoint.sh /entrypoint.sh
 
-USER ${USER_NAME}
+USER ${USER_ID}:${USER_ID}
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "run" ]
