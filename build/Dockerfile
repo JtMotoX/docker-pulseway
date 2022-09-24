@@ -18,6 +18,9 @@ RUN apt-get update && \
 		&& \
 	rm -rf /var/lib/apt/lists/*
 
+# INSTALL CURL FOR 1PASSWORD INTEGRATION
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 # SETUP USER
 ARG USER_NAME=appuser
 ARG USER_ID=1001
