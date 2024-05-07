@@ -1,8 +1,8 @@
-FROM debian:11-slim as base_image
+FROM debian:12-slim as base_image
 
 
 FROM base_image as downloader
-COPY ./pulseway_x64_8.11.0.deb /downloads/pulseway.deb
+COPY ./pulseway_x64_9.5.0.deb /downloads/pulseway.deb
 
 
 FROM base_image as final_image
@@ -14,7 +14,8 @@ RUN apt-get update && \
 		wget \
 		ca-certificates \
 		openssl \
-		libidn11 \
+		libidn12 \
+		dmidecode \
 		&& \
 	rm -rf /var/lib/apt/lists/*
 
