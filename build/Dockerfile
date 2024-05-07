@@ -1,11 +1,10 @@
-FROM debian:12-slim as base_image
+# BUILD ARGS
+ARG PULSEWAY_DEB="pulseway_x64_9.5.0.deb"
 
+# BASE IMAGE
+FROM debian:12-slim
 
-FROM base_image as downloader
-COPY ./pulseway_x64_9.5.0.deb /downloads/pulseway.deb
-
-
-FROM base_image as final_image
+ARG PULSEWAY_DEB
 
 # INSTALL DEPENDENCIES FOR PULSEWAY
 RUN apt-get update && \
@@ -37,8 +36,8 @@ RUN echo "Defaults        lecture = never" >>/etc/sudoers.d/suppress_lecture
 RUN echo "${USER_NAME} ALL=NOPASSWD:SETENV: /etc/init.d/pulseway start" >>/etc/sudoers.d/sudo_commands
 
 # RUN PULSEWAY INSTALLER FROM DOWNLOADER STAGE
-RUN --mount=type=bind,from=downloader,source=/downloads,target=/downloads \
-	dpkg -i /downloads/pulseway.deb
+RUN --mount=type=bind,source=.,target=/build \
+	dpkg -i "/build/${PULSEWAY_DEB}"
 
 # INSTALL envsubst
 RUN apt-get update && \
