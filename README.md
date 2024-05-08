@@ -1,6 +1,6 @@
 # docker pulseway
 
-Run Pulseway as a docker container to get notified when the server goes down
+Run Pulseway as a docker container to get notified when the host goes down
 
 ## Setup
 
@@ -8,8 +8,4 @@ Run Pulseway as a docker container to get notified when the server goes down
 
 1. Copy the [config.xml.sample](./config.xml.sample) file to [config.xml](./config.xml)
 
-1. Run the `./download-latest.sh` script
-
-1. Add the downloaded Pulseway filename to the top of the [Dockerfile](./build/Dockerfile)
-
-1. Run `docker-compose down && docker-compose up --build -d && docker-compose logs -f`
+2. Run `docker-compose down && docker-compose up --pull -d && docker-compose logs -f`

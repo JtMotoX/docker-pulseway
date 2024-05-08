@@ -2,7 +2,11 @@ version: '3'
 
 services:
   pulseway:
-    build: ./build
+    # build:
+    #   context: ./build
+    #   args:
+    #     PULSEWAY_VERSION: 9.5.0
+    image: jtmotox/pulseway:latest
     container_name: pulseway
     hostname: pulseway
     restart: always
